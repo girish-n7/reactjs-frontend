@@ -24,7 +24,7 @@ export default function Home() {
   }
 
   //call backend api
-  fetch("https://nodejs-backend-peach.vercel.app/", {
+  fetch("http://localhost:3000/", {
     method: "GET",
     redirect: "follow",
   })
@@ -34,7 +34,9 @@ export default function Home() {
 
   //filter result
   let filterRes =
-    filter === "all" ? result : result.find((item) => item.category === filter);
+    filter === "all"
+      ? result
+      : result.filter((item) => item.category == filter);
 
   //sort result
   // let sortRes
