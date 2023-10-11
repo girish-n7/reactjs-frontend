@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import { useState } from "react";
+import arrow from "../assets/up.svg";
 
 export default function Sort({ updateSort }) {
   //manage state for sort div
@@ -35,10 +36,13 @@ export default function Sort({ updateSort }) {
       <p className="sort--prompt">
         Sort
         <img
-          className="sort--arrow"
-          src=""
-          alt="arrow"
+          className="arrow"
+          src={arrow}
+          style={{
+            transform: `${sortDiv ? "rotate(0deg)" : "rotate(180deg)"}`,
+          }}
           onClick={() => setSortDiv((prevState) => !prevState)}
+          alt="arrow"
         ></img>
       </p>
       {sortDiv && <div className="sort--div">{sortMap}</div>}

@@ -3,11 +3,11 @@
 export default function Filter({ filter, updateFilter }) {
   //create arry for filter
   let filterArr = [
-    "All",
-    "Men's Clothing",
-    "Women's Clothing",
-    "Jewellery",
-    "Electronics",
+    "all",
+    "men's clothing",
+    "women's clothing",
+    "jewelery",
+    "electronics",
   ];
 
   //map the array into filter buttons

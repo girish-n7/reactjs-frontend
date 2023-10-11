@@ -8,7 +8,7 @@ export default function Home() {
   let [result, setResult] = useState(null);
 
   //manage state for filter
-  let [filter, setFilter] = useState("All");
+  let [filter, setFilter] = useState("all");
 
   //manage state for sort
   let [sort, setSort] = useState(null);
@@ -24,13 +24,23 @@ export default function Home() {
   }
 
   //call backend api
-  fetch("http://localhost:3000/", { method: "GET", redirect: "follow" })
+  fetch("https://nodejs-backend-peach.vercel.app/", {
+    method: "GET",
+    redirect: "follow",
+  })
     .then((response) => response.json())
     .then((result) => setResult(result))
-    .catch((err) => console.error(err));
+    .catch((err) => console.error("Error: " + err));
+
+  //filter result
+  let filterRes =
+    filter === "all" ? result : result.find((item) => item.category === filter);
+
+  //sort result
+  // let sortRes
 
   //map the result into cards
-  let cardMap = result?.map((item) => {
+  let cardMap = filterRes?.map((item) => {
     return (
       <Card
         key={item.id}
