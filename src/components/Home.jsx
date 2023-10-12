@@ -39,7 +39,18 @@ export default function Home() {
       : result.filter((item) => item.category == filter);
 
   //sort result
-  // let sortRes
+
+  filterRes && //conditionally render sort after fetching data
+    sort && //conditionally render sort function if sorting method is selected
+    filterRes.sort((a, b) => {
+      return sort === "Price: high to low"
+        ? b.price - a.price
+        : sort === "Price: low to high"
+        ? a.price - b.price
+        : sort === "Rating: low to high"
+        ? a.rating.rate - b.rating.rate
+        : b.rating.rate - a.rating.rate;
+    });
 
   //map the result into cards
   let cardMap = filterRes?.map((item) => {
