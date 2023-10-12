@@ -9,8 +9,8 @@ export default function Sort({ updateSort }) {
 
   //create array for sort
   let sortArr = [
-    "Price: high to low",
     "Price: low to high",
+    "Price: high to low",
     "Rating: high to low",
     "Rating: low to high",
   ];

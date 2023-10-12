@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "./Card";
 import Filter from "./Filter";
 import Sort from "./Sort";
@@ -23,14 +23,22 @@ export default function Home() {
     setSort(item);
   }
 
-  //call backend api
-  fetch("http://localhost:3000/", {
-    method: "GET",
-    redirect: "follow",
-  })
-    .then((response) => response.json())
-    .then((result) => setResult(result))
-    .catch((err) => console.error("Error: " + err));
+  ////call backend api
+  useEffect(() => fetchReq(), []);
+
+  //fetch request
+  function fetchReq() {
+    fetch("https://nodejs-backend-girish-n7.vercel.app/", {
+      method: "GET",
+      redirect: "follow",
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("api call");
+        setResult(result);
+      })
+      .catch((err) => console.error("Error: " + err));
+  }
 
   //filter result
   let filterRes =
