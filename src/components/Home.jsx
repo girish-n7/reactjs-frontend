@@ -2,8 +2,12 @@ import { useEffect, useState } from "react";
 import Card from "./Card";
 import Filter from "./Filter";
 import Sort from "./Sort";
+import Placeholder from "./Placeholder";
 
 export default function Home() {
+  //create array for placeholder
+  let placeholderArr = ["1", "2", "3", "4", "5"];
+
   //manage state for result
   let [result, setResult] = useState(null);
 
@@ -61,36 +65,36 @@ export default function Home() {
     });
 
   //map the result into cards
-  let cardMap = filterRes?.map((item) => {
-    return (
-      <Card
-        key={item.id}
-        title={item.title}
-        price={item.price}
-        category={item.category}
-        desc={item.description}
-        rating={item.rating}
-      />
-    );
-  });
+  let cardMap = result
+    ? filterRes?.map((item) => {
+        return (
+          <Card
+            key={item.id}
+            title={item.title}
+            price={item.price}
+            category={item.category}
+            desc={item.description}
+            rating={item.rating}
+          />
+        );
+      })
+    : placeholderArr.map((item) => <Placeholder key={item} />); //render placeholder default and only render the cards after api call
 
   return (
-    result && (
-      <div className="home--container">
-        <div className="home--head">
-          <Filter filter={filter} updateFilter={updateFilter} />
-          <Sort updateSort={updateSort} />
-        </div>
-        {sort && (
-          <p className="sortby">
-            Sort by {sort}{" "}
-            <button className="sort--clear" onClick={() => setSort(null)}>
-              Clear sort
-            </button>
-          </p>
-        )}
-        <div className="card--container">{cardMap}</div>
+    <div className="home--container">
+      <div className="home--head">
+        <Filter filter={filter} updateFilter={updateFilter} />
+        <Sort updateSort={updateSort} />
       </div>
-    )
+      {sort && (
+        <p className="sortby">
+          Sort by {sort}{" "}
+          <button className="sort--clear" onClick={() => setSort(null)}>
+            Clear sort
+          </button>
+        </p>
+      )}
+      <div className="card--container">{cardMap}</div>
+    </div>
   );
 }

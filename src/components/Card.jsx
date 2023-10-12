@@ -19,11 +19,19 @@ export default function Card({ title, price, category, desc, rating }) {
       </div>
       {details && (
         <div className="card--body">
-          <p className="desc">Description: {desc}</p>
+          <p className="desc">
+            <strong>Description:</strong> {desc}
+          </p>
           <div className="card--rating">
-            <p className="category">Category: {category}</p>
-            <p className="rating--rate">Rating: {rating.rate}</p>
-            <p className="rating--count">No. of ratings: {rating.count}</p>
+            <p className="category">
+              <strong>Category:</strong> {category}
+            </p>
+            <p className="rating--rate">
+              <strong>Rating:</strong> {rating.rate} /5
+            </p>
+            <p className="rating--count">
+              <strong>{rating.count}</strong> customers have rated this product
+            </p>
           </div>
         </div>
       )}
